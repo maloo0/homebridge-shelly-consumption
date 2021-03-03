@@ -1,5 +1,5 @@
 {
-  "private": true,
+  "private": false,
   "displayName": "homebridge-shelly-consumption",
   "name": "homebridge-shelly-consumption",
   "version": "1.0.0",

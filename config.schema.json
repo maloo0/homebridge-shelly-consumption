@@ -1,4 +1,5 @@
 {
+  "name": "homebridge-shelly-consumption",
   "pluginAlias": "ShellyConsumption",
   "pluginType": "platform",
   "singular": true,
@@ -23,7 +24,12 @@
           "title": "Shelly device",
           "type": "object",
           "properties": {
-            
+
+            "name": {
+              "title": "Name (erscheint in Homekit)",
+              "type": "string",
+              "placeholder": "Bsp. 3EM-Ch1"
+            },
             "ipAddress": {
               "title": "IP-address",
               "type": "string",
@@ -54,12 +60,8 @@
               "title": "emeter channel 3",
               "type": "boolean",
               "condition": {
-                "functionBody": "return model.devices[arrayIndices].deviceType === 'shelly3em';"
+                "functionBody": "return model.devices[arrayIndices].deviceType === 'Shelly3EM';"
               }
-            },
-            "sumUpValues": {
-              "title": "Sum up values",
-              "type": "boolean"
             }
           }
         }
