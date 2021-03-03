@@ -2,7 +2,7 @@
   "private": false,
   "displayName": "homebridge-shelly-consumption",
   "name": "homebridge-shelly-consumption",
-  "version": "1.0.1",
+  "version": "1.0.4",
   "description": "Provides the consumption values of Shelly EM and Shelly 3EM to HomeKit.",
   "license": "Apache-2.0",
   "repository": {

@@ -15,6 +15,9 @@ export class ShellyConsumptionHomebridgePlatform implements DynamicPlatformPlugi
   // this is used to track restored cached accessories
   public readonly accessories: PlatformAccessory[] = [];
 
+  // all accessories, to prevent creating of two new accessories with same UUID
+  public myAccessories: PlatformAccessory[] = [];
+
 
   constructor(
     public readonly log: Logger,
@@ -43,6 +46,7 @@ export class ShellyConsumptionHomebridgePlatform implements DynamicPlatformPlugi
 
     // add the restored accessory to the accessories cache so we can track if it has already been registered
     this.accessories.push(accessory);
+    this.myAccessories.push(accessory);
   }
 
   /**
@@ -91,7 +95,6 @@ export class ShellyConsumptionHomebridgePlatform implements DynamicPlatformPlugi
 
           // create the accessory handler for the restored accessory
           // this is imported from `platformAccessory.ts`
-          existingAccessory.UUID = Math.random().toString();
           new ShellyConsumptionPlatformAccessory(this, existingAccessory, device);
 
           // it is possible to remove platform accessories at any time using `api.unregisterPlatformAccessories`, eg.:
@@ -99,24 +102,30 @@ export class ShellyConsumptionHomebridgePlatform implements DynamicPlatformPlugi
           // this.api.unregisterPlatformAccessories(PLUGIN_NAME, PLATFORM_NAME, [existingAccessory]);
           // this.log.info('Removing existing accessory from cache:', existingAccessory.displayName);
         } else {
-          // the accessory does not yet exist, so we need to create it
-          this.log.info('Adding new accessory:', device.deviceType, ' - ', device.ipAddress, ' (Channels:', channels, ')');
+          if (!this.myAccessories.find(accessory => accessory.UUID === uuid)) {
+            // the accessory does not yet exist, so we need to create it
+            this.log.info('Adding new accessory:', device.deviceType, ' - ', device.ipAddress, ' (Channels:', channels, ')');
 
-          // create a new accessory
-          const displayName = device.deviceType + ' - ' + device.ipAddress + ' (Channels:' + channels + ')';
-          const accessory = new this.api.platformAccessory(displayName, uuid);
+            // create a new accessory
+            const displayName = device.deviceType + ' - ' + device.ipAddress + ' (Channels:' + channels + ')';
+            const accessory = new this.api.platformAccessory(displayName, uuid);
 
-          // store a copy of the device object in the `accessory.context`
-          // the `context` property can be used to store any data about the accessory you may need
-          accessory.context.device = device;
+            // add new accessory to myAccessories List
+            this.myAccessories.push(accessory);
 
-          // create the accessory handler for the newly create accessory
-          // this is imported from `platformAccessory.ts`
-          new ShellyConsumptionPlatformAccessory(this, accessory, device);
+            // store a copy of the device object in the `accessory.context`
+            // the `context` property can be used to store any data about the accessory you may need
+            accessory.context.device = device;
 
-          // link the accessory to your platform
-          this.api.registerPlatformAccessories(PLUGIN_NAME, PLATFORM_NAME, [accessory]);
+            // create the accessory handler for the newly create accessory
+            // this is imported from `platformAccessory.ts`
+            new ShellyConsumptionPlatformAccessory(this, accessory, device);
 
+            // link the accessory to your platform
+            this.api.registerPlatformAccessories(PLUGIN_NAME, PLATFORM_NAME, [accessory]);
+          } else{
+            this.log.info('Can not create accessory with same IP and channel-selection. Please change the ip or the channel-selection.');
+          }
         }
       }
 
@@ -142,15 +151,15 @@ export class ShellyConsumptionHomebridgePlatform implements DynamicPlatformPlugi
 
         }))) {
           this.api.unregisterPlatformAccessories(PLUGIN_NAME, PLATFORM_NAME, [accessory]);
-          this.log.info('Deleting accessory');
+          this.myAccessories.splice(this.myAccessories.indexOf(accessory), 1);
+          this.log.info('Deleting accessory ' + accessory.displayName);
         }
       }
     } else {
       for (const accessory of this.accessories) {
-        this.log.info(accessory.UUID);
-
         this.api.unregisterPlatformAccessories(PLUGIN_NAME, PLATFORM_NAME, [accessory]);
-        this.log.info('Deleting accessory - No devices configured');
+        this.myAccessories.splice(this.myAccessories.indexOf(accessory), 1);
+        this.log.info('Deleting accessory ' + accessory.displayName);
       }
     }
 
