@@ -1,10 +1,8 @@
-import { access } from 'fs';
-import { Service, PlatformAccessory, CharacteristicValue, CharacteristicSetCallback, CharacteristicGetCallback } from 'homebridge';
+import { Service, PlatformAccessory } from 'homebridge';
 
 import { ShellyConsumptionHomebridgePlatform } from './platform';
 
 import * as http from 'http';
-import { parse } from 'path';
 
 /**
  * Platform Accessory
@@ -17,13 +15,15 @@ export class ShellyConsumptionPlatformAccessory {
   constructor(
     private readonly platform: ShellyConsumptionHomebridgePlatform,
     private readonly accessory: PlatformAccessory,
-    private readonly device
+    private readonly device,
   ) {
 
-    http.get("http://" + platform.config.user + ":" + platform.config.password + "@" + device.ipAddress + "/shelly", (res) => {
-      res.setEncoding("utf-8");
+    http.get('http://' + platform.config.user + ':' + platform.config.password + '@' + device.ipAddress + '/shelly', (res) => {
+      res.setEncoding('utf-8');
       let rawData = '';
-      res.on('data', (chunk) => { rawData += chunk; });
+      res.on('data', (chunk) => {
+        rawData += chunk; 
+      });
       res.on('end', () => {
         try {
           const parsedData = JSON.parse(rawData);
@@ -39,49 +39,36 @@ export class ShellyConsumptionPlatformAccessory {
 
 
         } catch (e) {
-          console.log("Got error" + e.message);
+          //console.log('Got error' + e.message);
         }
       });
 
-    }).on('error', (e) => {
+    })/*.on('error', (e) => {
       console.error(`Got error: ${e.message}`);
-    });
+    })*/;
 
     /* add light sensor for power value */
     // get the LightSensor service if it exists, otherwise create a new LightSensor service
     // you can create multiple services for each accessory
-    this.service = this.accessory.getService(this.platform.Service.LightSensor) || this.accessory.addService(this.platform.Service.LightSensor);
+    this.service = this.accessory.getService(this.platform.Service.LightSensor) || 
+      this.accessory.addService(this.platform.Service.LightSensor);
 
     // set the service name, this is what is displayed as the default name on the Home app
     // in this example we are using the name we stored in the `accessory.context` in the `discoverDevices` method.
-    if(accessory.context.device.name !== "") {
+    if(accessory.context.device.name !== '') {
       this.service.setCharacteristic(this.platform.Characteristic.Name, accessory.context.device.name);
-    }
-    else {
+    } else {
       this.service.setCharacteristic(this.platform.Characteristic.Name, accessory.context.device.ipAddress);
     }
 
     // register handlers for the On/Off Characteristic
     this.service.getCharacteristic(this.platform.Characteristic.CurrentAmbientLightLevel)
-      .on('get', this.handleCurrentAmbientLightLevelGet.bind(this));               // GET - bind to the `handleCurrentAmbientLightLevelGet` method below
+      .on('get', this.handleCurrentAmbientLightLevelGet.bind(this));               
+    // GET - bind to the `handleCurrentAmbientLightLevelGet` method below
 
     this.service.getCharacteristic(this.platform.Characteristic.StatusActive)
-      .on('get', this.handleCurrentStatusActive.bind(this));               // GET - bind to the `handleCurrentAmbientLightLevelGet` method below
-
-
-
-
-
-    // /* add battery sensor for indicating negative and positive power */
-    // this.batteryService = this.accessory.getService(this.platform.Service.BatteryService) || this.accessory.addService(this.platform.Service.BatteryService);
-
-    // this.batteryService.setCharacteristic(this.platform.Characteristic.Name, accessory.context.device.ipAddress);
-
-    // this.service.getCharacteristic(this.platform.Characteristic.StatusLowBattery)
-    //   .on('get', this.handleCurrentAmbientLightLevelGet.bind(this));               // GET - bind to the `handleCurrentAmbientLightLevelGet` method below
-
-
-
+      .on('get', this.handleCurrentStatusActive.bind(this));              
+    // GET - bind to the `handleCurrentAmbientLightLevelGet` method below
   }
 
 
@@ -91,10 +78,13 @@ export class ShellyConsumptionPlatformAccessory {
   handleCurrentAmbientLightLevelGet(callback) {
     this.platform.log.debug('Triggered GET CurrentAmbientLightLevel');
 
-    http.get("http://" + this.platform.config.user + ":" + this.platform.config.password + "@" + this.device.ipAddress + "/status", (res) => {
-      res.setEncoding("utf-8");
+    http.get('http://' + this.platform.config.user + ':' + this.platform.config.password + '@' 
+        + this.device.ipAddress + '/status', (res) => {
+      res.setEncoding('utf-8');
       let rawData = '';
-      res.on('data', (chunk) => { rawData += chunk; });
+      res.on('data', (chunk) => {
+        rawData += chunk; 
+      });
       res.on('end', () => {
         try {
           const parsedData = JSON.parse(rawData);
@@ -118,13 +108,13 @@ export class ShellyConsumptionPlatformAccessory {
           callback(null, Math.abs(power));
 
         } catch (e) {
-          console.log("Got error" + e.message);
+          //console.log('Got error' + e.message);
         }
       });
 
-    }).on('error', (e) => {
-      console.error(`Got error: ${e.message}`);
-    });
+    })/*.on('error', (e) => {
+      //console.error(`Got error: ${e.message}`);
+    })*/;
 
   }
 
@@ -132,10 +122,13 @@ export class ShellyConsumptionPlatformAccessory {
   handleCurrentStatusActive(callback) {
     this.platform.log.debug('Triggered GET PowerPolarity');
 
-    http.get("http://" + this.platform.config.user + ":" + this.platform.config.password + "@" + this.device.ipAddress + "/status", (res) => {
-      res.setEncoding("utf-8");
+    http.get('http://' + this.platform.config.user + ':' + this.platform.config.password + '@' 
+        + this.device.ipAddress + '/status', (res) => {
+      res.setEncoding('utf-8');
       let rawData = '';
-      res.on('data', (chunk) => { rawData += chunk; });
+      res.on('data', (chunk) => {
+        rawData += chunk;
+      });
       res.on('end', () => {
         try {
           const parsedData = JSON.parse(rawData);
@@ -154,8 +147,7 @@ export class ShellyConsumptionPlatformAccessory {
           let polarity;
           if (power >= 0) {
             polarity = true;
-          }
-          else if (power < 0) {
+          } else if (power < 0) {
             polarity = false;
           }
 
@@ -163,12 +155,12 @@ export class ShellyConsumptionPlatformAccessory {
           callback(null, polarity);
 
         } catch (e) {
-          console.log("Got error" + e.message);
+          //console.log('Got error' + e.message);
         }
       });
 
-    }).on('error', (e) => {
-      console.error(`Got error: ${e.message}`);
-    });
+    })/*.on('error', (e) => {
+      //console.error(`Got error: ${e.message}`);
+    })*/;
   }
 }

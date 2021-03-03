@@ -60,15 +60,15 @@ export class ShellyConsumptionHomebridgePlatform implements DynamicPlatformPlugi
     if (shellyDevices) {
       for (const device of shellyDevices) {
 
-        let channels = "";
+        let channels = '';
         if (device.emeterChannel1) {
-          channels += " 1";
+          channels += ' 1';
         }
         if (device.emeterChannel2) {
-          channels += " 2";
+          channels += ' 2';
         }
         if (device.emeterChannel3) {
-          channels += " 3";
+          channels += ' 3';
         }
 
 
@@ -97,13 +97,12 @@ export class ShellyConsumptionHomebridgePlatform implements DynamicPlatformPlugi
           // remove platform accessories when no longer present
           // this.api.unregisterPlatformAccessories(PLUGIN_NAME, PLATFORM_NAME, [existingAccessory]);
           // this.log.info('Removing existing accessory from cache:', existingAccessory.displayName);
-        }
-        else {
+        } else {
           // the accessory does not yet exist, so we need to create it
           this.log.info('Adding new accessory:', device.deviceType, ' - ', device.ipAddress, ' (Channels:', channels, ')');
 
           // create a new accessory
-          const displayName = device.deviceType + " - " + device.ipAddress + ' (Channels:' + channels + ')';
+          const displayName = device.deviceType + ' - ' + device.ipAddress + ' (Channels:' + channels + ')';
           const accessory = new this.api.platformAccessory(displayName, uuid);
 
           // store a copy of the device object in the `accessory.context`
@@ -121,43 +120,36 @@ export class ShellyConsumptionHomebridgePlatform implements DynamicPlatformPlugi
       }
 
       for (const accessory of this.accessories) {
-        if (!(shellyDevices.find( (device) => {
+        if (!(shellyDevices.find((device) => {
 
-          let channels = "";
+          let channels = '';
           if (device.emeterChannel1) {
-            channels += " 1";
+            channels += ' 1';
           }
           if (device.emeterChannel2) {
-            channels += " 2";
+            channels += ' 2';
           }
           if (device.emeterChannel3) {
-            channels += " 3";
+            channels += ' 3';
           }
 
           if (this.api.hap.uuid.generate(device.ipAddress + channels) === accessory.UUID) {
             return true;
-          }
-          else {
+          } else {
             return false;
           }
-          
-        } ))) {
+
+        }))) {
           this.api.unregisterPlatformAccessories(PLUGIN_NAME, PLATFORM_NAME, [accessory]);
-          this.log.info("Deleting accessory");
+          this.log.info('Deleting accessory');
         }
-
-
-        // for (const device of shellyDevices) {
-
-        // }
       }
-    }
-    else {
+    } else {
       for (const accessory of this.accessories) {
         this.log.info(accessory.UUID);
 
         this.api.unregisterPlatformAccessories(PLUGIN_NAME, PLATFORM_NAME, [accessory]);
-        this.log.info("Deleting accessory - No devices configured");
+        this.log.info('Deleting accessory - No devices configured');
       }
     }
 
