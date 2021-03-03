@@ -91,6 +91,7 @@ export class ShellyConsumptionHomebridgePlatform implements DynamicPlatformPlugi
 
           // create the accessory handler for the restored accessory
           // this is imported from `platformAccessory.ts`
+          existingAccessory.UUID = Math.random().toString();
           new ShellyConsumptionPlatformAccessory(this, existingAccessory, device);
 
           // it is possible to remove platform accessories at any time using `api.unregisterPlatformAccessories`, eg.:
