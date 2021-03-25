@@ -54,9 +54,9 @@ A photo of appearance / settings in Homekit is shown below (here in german):
 <img src="./img/homekit_accessory.jpg" width="400px" />
 
 **Important information for everybody who uses the Shelly devices for measurement of negative values too. For example if you have photovoltaics and you feed in electricity into the power grid:**
-<br />The accessory provides a further indicator named *Status: active* (in german: *Status: Aktiv*). This shows if you have a negative or positive consumption value. 
-  *Yes* stands for positive value
-  *No* stands for negative value
+<br />The accessory provides a further indicator named *Status: active* (in german: *Status: Aktiv*). This shows if you have a negative or positive consumption value. Unfortunately, it's not possible to provide a negative value in HomeKit at the moment.
+<br />  *Yes* stands for positive value
+<br />  *No* stands for negative value
 
 In the future I probably will change this, so that you can recognize this more directly and more obvious. Maybe by adding a further accessory of another accessory type.
 
