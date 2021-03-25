@@ -39,7 +39,7 @@ An example of configuration is shown here too:
    - IP-address:  Here you have to enter the IP address of the Shelly device.
    - Device type:  Select the device type of your device. Depending on this, the checkboxes below appear or disappear.
    - emeter channels:  Here you have to select which channels of the device should be used for this accessory. The selected channels will be summed up and the total consumption value will be provided to HomeKit. So, in HomeKit you will see one single brightness sensor accessory. 
-     If you want to have the single channel consumption values separately in HomeKit, you can add a further device selecting the appropriate channels. On this way you can add further accessories which summ up different channels. This makes it very flexible for you.
+     <br />If you want to have the single channel consumption values separately in HomeKit, you can add a further device selecting the appropriate channels. On this way you can add further accessories which summ up different channels. This makes it very flexible for you.
      Important for this: It only is possible to add devices with the same IP address and the same channel selection one time.
      An example for this is shown below:
 
