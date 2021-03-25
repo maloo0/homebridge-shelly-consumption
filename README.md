@@ -6,7 +6,7 @@ Because HomeKit doesn't support any consumption service, here the values are int
 is Lux.
 
 Actually, this only is a beta version and a very new plugin.
-Should any errors occur, of course you can write to me via GitHub. Suggestions for improvement are welcome too.
+Should any errors occur, of course you can open an issue in GitHub. Suggestions for improvement are welcome too.
 Thanks a lot!
 
 ## Supported devices
