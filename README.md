@@ -45,6 +45,8 @@ An example of configuration is shown next:
 
 <img src="./img/plugin_config_example_multiple.PNG" width="750px" />
 
+Please remind: After saving the configuration once, changes maybe won't be taken. In this case, it could be necessary to remove the corresponding device, save the config, restart homebridge, add the device newly, save config and restart homebridge again.
+
 ## Appearance in Homekit
 Like described above, the accessory appears as a brightness sensor and the consumption value will be provided as Lux value.
 A photo of appearance / settings in Homekit is shown below (here in german):
