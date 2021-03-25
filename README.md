@@ -65,4 +65,4 @@ In the future I probably will change this, so that you can recognize this more d
 At least I want to tell that this plugin isn't tested in detail. So it's possible that there will be some problems with it.
 If so, don't hesitate to contact me. 
 
-I implemenented this plugin in my free time. If you would like to support me on any ways, feel free to contact me. Further I would be thankful if you want to help me by donating a small amount, so I can buy further devices to add support for those. For this please contact me too.
+I implemenented this plugin in my free time. If you would like to support me on any ways, feel free to contact me. Further, I would be thankful if you want to help me by donating a small amount, so that I can buy further devices to add support for those. For this, please contact me too.
