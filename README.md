@@ -1,7 +1,7 @@
 # homebridge-shelly-consumption
 
 ## Plugin description
-This homebridge plugin provides the possibility to get the consumption values of **Shelly EM** and **Shelly 3EM** in Homekit. 
+This homebridge plugin provides the possibility to get the consumption values of **Shelly EM** and **Shelly 3EM** in HomeKit. 
 Because HomeKit doesn't support any consumption service, here the values are integrated as LightSensor-Service. So the unit of the value 
 is Lux.
 
@@ -35,11 +35,11 @@ An example of configuration is shown next:
 1. First you have to enter the user and password of your Shelly devices. You don't need to set these if authentication isn't activated on your Shelly devices.
 2. Next you can add devices by using the button *ADD SHELLY DEVICE*. 
    Here you enter the values for the following attributes:
-   - Name:  *Optional* Here you can enter a name for the device. This is the label, the accessory is appearing with in homekit later. The value can be changed later (In the plugin settings and also in Homekit).
+   - Name:  *Optional* Here you can enter a name for the device. This is the label, the accessory is appearing with in HomeKit later. The value can be changed later (In the plugin settings and also in HomeKit).
    - IP-address:  Here you have to enter the IP address of the Shelly device.
    - Device type:  Select the device type of your device. Depending on this, the checkboxes below appear or disappear.
-   - emeter channels:  Here you have to select which channels of the device should be used for this accessory. The selected channels will be summed up and the total consumption value will be provided to Homekit. So, in Homekit you will see one single brightness sensor accessory. 
-     If you want to have the single channel consumption values separately in Homekit, you can add a further device selecting the appropriate channels. On this way you can add further accessories which summ up different channels. This makes it very flexible for you.
+   - emeter channels:  Here you have to select which channels of the device should be used for this accessory. The selected channels will be summed up and the total consumption value will be provided to HomeKit. So, in Homekit you will see one single brightness sensor accessory. 
+     If you want to have the single channel consumption values separately in HomeKit, you can add a further device selecting the appropriate channels. On this way you can add further accessories which summ up different channels. This makes it very flexible for you.
      Important for this: It only is possible to add devices with the same IP address and the same channel selection one time.
      An example for this is shown below:
 
@@ -47,7 +47,7 @@ An example of configuration is shown next:
 
 Please remind: After saving the configuration once, changes maybe won't be taken. In this case, it could be necessary to remove the corresponding device, save the config, restart homebridge, add the device newly, save config and restart homebridge again.
 
-## Appearance in Homekit
+## Appearance in HomeKit
 Like described above, the accessory appears as a brightness sensor and the consumption value will be provided as Lux value.
 A photo of appearance / settings in Homekit is shown below (here in german):
 
