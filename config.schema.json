@@ -26,7 +26,7 @@
           "properties": {
 
             "name": {
-              "title": "Name (erscheint in Homekit)",
+              "title": "Name (appearing in Homekit)",
               "type": "string",
               "placeholder": "Bsp. 3EM-Ch1"
             },
