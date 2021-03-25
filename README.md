@@ -21,16 +21,16 @@ For installation of this plugin, follow these instructions:
 ## Configuration
 After installation, the plugin appears on the Homebridge UI X under the tab *Plugins* looking like shown below:
 
-![Image of Plugin in Homebridge UI X](img/plugin.png)
+![Image of Plugin in Homebridge UI X](img/plugin.PNG)
 
 For configuration click on *Settings*. The following dialog will pop up:
 
-![Image of Plugin Settings](img/plugin_config.png)
+![Image of Plugin Settings](img/plugin_config.PNG)
 
 At beginning, the configruation is empty and you have to set it up like described next.
 An example of configuration is shown next:
 
-![Example for plugin configuration](img/plugin_config_example.png)
+![Example for plugin configuration](img/plugin_config_example.PNG)
 
 1. First you have to enter the user and password of your Shelly devices. You don't need to set these if authentication isn't activated on your Shelly devices.
 2. Next you can add devices by using the button *ADD SHELLY DEVICE*. 
@@ -43,7 +43,7 @@ An example of configuration is shown next:
      Important for this: It only is possible to add devices with the same IP address and the same channel selection one time.
      An example for this is shown below:
 
-![Example for plugin configuration with same device multiple times](img/plugin_config_example_multiple.png)
+![Example for plugin configuration with same device multiple times](img/plugin_config_example_multiple.PNG)
 
 
 ## Appearance in Homekit
