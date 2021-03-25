@@ -47,6 +47,32 @@ An example of configuration is shown here too:
 
 Please remind: After saving the configuration once, changes done later maybe won't be taken. In this case, it could be necessary to remove the corresponding device, save the config, restart homebridge, add the device newly, save config and restart homebridge again.
 
+**Configuration in JSON-file:**
+
+```
+{
+   "user": "",
+   "password": "",
+   "devices": [
+      {
+         "name": "House consumption (ch1)",
+         "ipAddress": "192.168.1.100",
+         "deviceType": "Shelly3EM",
+         "emeterChannel1": true
+      },
+      {
+         "name": "House consumption (all)",
+         "ipAddress": "192.168.1.100",
+         "deviceType": "Shelly3EM",
+         "emeterChannel1": true,
+         "emeterChannel2": true,
+         "emeterChannel3": true
+      }
+   ],
+   "platform": "ShellyConsumption"
+}
+```
+
 ## Appearance in HomeKit
 Like described above, the accessory appears as a brightness sensor and the consumption value will be provided as Lux value.
 A photo of appearance / settings in Homekit is shown below (here in german):
