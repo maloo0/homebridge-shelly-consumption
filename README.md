@@ -28,7 +28,7 @@ For configuration click on *Settings*. The following dialog will pop up:
 <img src="./img/plugin_config.PNG" width="750px" />
 
 At beginning, the configruation is empty and you have to set it up like described next.
-An example of configuration is shown next:
+An example of configuration is shown here too:
 
 <img src="./img/plugin_config_example.PNG" width="750px" />
 
