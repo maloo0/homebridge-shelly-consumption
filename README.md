@@ -25,14 +25,12 @@ After installation, the plugin appears on the Homebridge UI X under the tab *Plu
 
 For configuration click on *Settings*. The following dialog will pop up:
 
-![Image of Plugin Settings](img/plugin_config.PNG)
-<img src="./img/plugin_config.PNG" width="800px" />
+<img src="./img/plugin_config.PNG" width="750px" />
 
 At beginning, the configruation is empty and you have to set it up like described next.
 An example of configuration is shown next:
 
-![Example for plugin configuration](img/plugin_config_example.PNG)
-<img src="./img/plugin_config_example.PNG" width="800px" />
+<img src="./img/plugin_config_example.PNG" width="750px" />
 
 1. First you have to enter the user and password of your Shelly devices. You don't need to set these if authentication isn't activated on your Shelly devices.
 2. Next you can add devices by using the button *ADD SHELLY DEVICE*. 
@@ -45,8 +43,7 @@ An example of configuration is shown next:
      Important for this: It only is possible to add devices with the same IP address and the same channel selection one time.
      An example for this is shown below:
 
-![Example for plugin configuration with same device multiple times](img/plugin_config_example_multiple.PNG)
-<img src="./img/plugin_config_example_multiple.PNG" width="800px" />
+<img src="./img/plugin_config_example_multiple.PNG" width="750px" />
 
 ## Appearance in Homekit
 Like described above, the accessory appears as a brightness sensor and the consumption value will be provided as Lux value.
